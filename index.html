@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merry Chít Mớt K58B-TM</title>
+    <title>Merry Chít Mớt</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
@@ -238,48 +238,47 @@
             let x = 0, y = 0, z = 0;
             const t = Math.random();
             switch (char) {
-                case 0:
-                    if (t < 0.4) { x = -75 + t / 0.4 * 5; y = -10 + t / 0.4 * 20; }
-                    else if (t < 0.8) { x = -70 + (t - 0.4) / 0.4 * 5; y = 10 - (t - 0.4) / 0.4 * 20; }
-                    else { x = -72.5 + (t - 0.8) / 0.2 * 5; y = 0; }
+                case 0: // K
+                    if (t < 0.33) { x = -70; y = -10 + (t / 0.33) * 20; }
+                    else if (t < 0.5) { x = -70 + ((t - 0.33) / 0.17) * 8; y = 10 - ((t - 0.33) / 0.17) * 10; }
+                    else { x = -70 + ((t - 0.5) / 0.5) * 8; y = 0 - ((t - 0.5) / 0.5) * 10; }
                     break;
-                case 1:
-                    if (t < 0.33) { x = -55; y = -10 + (t / 0.33) * 20; }
-                    else if (t < 0.66) { x = -55 + ((t - 0.33) / 0.33) * 10; y = 10 - ((t - 0.33) / 0.33) * 20; }
-                    else { x = -45; y = -10 + ((t - 0.66) / 0.34) * 20; }
+                case 1: // 5
+                    if (t < 0.2) { x = -55 + (t / 0.2) * 8; y = 10; }
+                    else if (t < 0.4) { x = -55; y = 10 - ((t - 0.2) / 0.2) * 10; }
+                    else if (t < 0.6) { x = -55 + ((t - 0.4) / 0.2) * 8; y = 0; }
+                    else if (t < 0.8) { x = -47; y = 0 - ((t - 0.6) / 0.2) * 10; }
+                    else { x = -55 + ((t - 0.8) / 0.2) * 8; y = -10; }
                     break;
-                case 2:
-                    if (t < 0.33) { x = -35; y = 10 - (t / 0.33) * 20; }
-                    else if (t < 0.66) { x = -25; y = 10 - ((t - 0.33) / 0.33) * 20; }
-                    else { x = -35 + ((t - 0.66) / 0.34) * 10; y = 0; }
+                case 2: // 8
+                    if (t < 0.25) { x = -35 + 4 * Math.cos((t / 0.25) * Math.PI * 2); y = 5 + 5 * Math.sin((t / 0.25) * Math.PI * 2); }
+                    else if (t < 0.5) { x = -35 + 4 * Math.cos((t / 0.25) * Math.PI * 2); y = -5 + 5 * Math.sin((t / 0.25) * Math.PI * 2); }
+                    else if (t < 0.75) { x = -35 + 4 * Math.cos((t / 0.25) * Math.PI * 2); y = 5 + 5 * Math.sin((t / 0.25) * Math.PI * 2); }
+                    else { x = -35 + 4 * Math.cos((t / 0.25) * Math.PI * 2); y = -5 + 5 * Math.sin((t / 0.25) * Math.PI * 2); }
                     break;
-                case 3:
-                    if (t < 0.33) { x = -15 + (t / 0.33) * 5; y = 10 - (t / 0.33) * 10; }
-                    else if (t < 0.66) { x = -5 - ((t - 0.33) / 0.33) * 5; y = 10 - ((t - 0.33) / 0.33) * 10; }
-                    else { x = -10; y = ((t - 0.66) / 0.34) * -10; }
+                case 3: // B
+                    if (t < 0.25) { x = -20; y = -10 + (t / 0.25) * 20; }
+                    else if (t < 0.5) { x = -20 + 4 * Math.cos((t - 0.25) / 0.25 * Math.PI); y = 5 + 5 * Math.sin((t - 0.25) / 0.25 * Math.PI); }
+                    else if (t < 0.75) { x = -20 + 4 * Math.cos((t - 0.5) / 0.25 * Math.PI); y = -5 + 5 * Math.sin((t - 0.5) / 0.25 * Math.PI); }
+                    else { x = -20; y = 0; }
                     break;
-                case 4:
-                    if (t < 0.3) { x = 5; y = 10 - (t / 0.3) * 20; }
-                    else if (t < 0.55) { x = 5 + ((t - 0.3) / 0.25) * 10; y = 10; }
-                    else if (t < 0.8) { x = 5 + ((t - 0.55) / 0.25) * 8; y = 0; }
-                    else { x = 5 + ((t - 0.8) / 0.2) * 10; y = -10; }
+                case 4: // -
+                    x = -5 + (t * 8); y = 0;
                     break;
-                case 5:
-                    if (t < 0.33) { x = 25; y = 10 - (t / 0.33) * 20; }
-                    else if (t < 0.66) { x = 25 + ((t - 0.33) / 0.33) * 10; y = -10; }
-                    else { x = 35; y = -10 + ((t - 0.66) / 0.34) * 20; }
+                case 5: // T
+                    if (t < 0.3) { x = 15 + (t / 0.3) * 10; y = 10; }
+                    else { x = 20; y = 10 - ((t - 0.3) / 0.7) * 20; }
                     break;
-                case 6:
-                    if (t < 0.3) { x = 45; y = 10 - (t / 0.3) * 20; }
-                    else if (t < 0.55) { x = 45 + ((t - 0.3) / 0.25) * 10; y = 10; }
-                    else if (t < 0.8) { x = 45 + ((t - 0.55) / 0.25) * 8; y = 0; }
-                    else { x = 45 + ((t - 0.8) / 0.2) * 10; y = -10; }
+                case 6: // M
+                    if (t < 0.25) { x = 35; y = -10 + (t / 0.25) * 20; }
+                    else if (t < 0.5) { x = 35 + ((t - 0.25) / 0.25) * 5; y = 10 - ((t - 0.25) / 0.25) * 10; }
+                    else if (t < 0.75) { x = 40 + ((t - 0.5) / 0.25) * 5; y = 0 + ((t - 0.5) / 0.25) * 10; }
+                    else { x = 45; y = -10 + ((t - 0.75) / 0.25) * 20; }
                     break;
-                case 7:
-                    if (t < 0.25) { x = 65; y = -10 + (t / 0.25) * 20; }
-                    else if (t < 0.5) { x = 65 + ((t - 0.25) / 0.25) * 5; y = 10 - ((t - 0.25) / 0.25) * 10; }
-                    else if (t < 0.75) { x = 70 + ((t - 0.5) / 0.25) * 5; y = ((t - 0.5) / 0.25) * 10; }
-                    else { x = 75; y = 10 - ((t - 0.75) / 0.25) * 20; }
+                case 7: // ❤️
+                    const heartT = t * Math.PI * 2;
+                    x = 60 + 6 * (16 * Math.pow(Math.sin(heartT), 3));
+                    y = 5 + 6 * (13 * Math.cos(heartT) - 5 * Math.cos(2 * heartT) - 2 * Math.cos(3 * heartT) - Math.cos(4 * heartT));
                     break;
             }
             x *= 1.0;
@@ -404,31 +403,11 @@
         }
 
         function createDecorations() {
-            function txtTex(t, s, c, sharp = false) {
-                const cvs = document.createElement('canvas'); 
-                cvs.width = sharp ? 2048 : 1024; 
-                cvs.height = sharp ? 512 : 256;
-                const ctx = cvs.getContext('2d'); 
-                ctx.font = `bold italic ${s}px "Times New Roman"`; 
-                ctx.fillStyle = c;
-                ctx.textAlign = 'center'; 
-                if (sharp) {
-                    ctx.shadowColor = "#FFF"; 
-                    ctx.shadowBlur = 8; 
-                    ctx.shadowOffsetX = 2;
-                    ctx.shadowOffsetY = 2;
-                } else {
-                    ctx.shadowColor = "#FFF"; 
-                    ctx.shadowBlur = 20;
-                }
-                ctx.fillText(t, cvs.width / 2, cvs.height * 0.6);
-                const texture = new THREE.CanvasTexture(cvs);
-                if (sharp) {
-                    texture.minFilter = THREE.LinearFilter;
-                    texture.magFilter = THREE.LinearFilter;
-                    texture.generateMipmaps = false;
-                }
-                return texture;
+            function txtTex(t, s, c) {
+                const cvs = document.createElement('canvas'); cvs.width = 1024; cvs.height = 256;
+                const ctx = cvs.getContext('2d'); ctx.font = `bold italic ${s}px "Times New Roman"`; ctx.fillStyle = c;
+                ctx.textAlign = 'center'; ctx.shadowColor = "#FFF"; ctx.shadowBlur = 20; ctx.fillText(t, 512, 150);
+                return new THREE.CanvasTexture(cvs);
             }
             titleMesh = new THREE.Mesh(new THREE.PlaneGeometry(60, 15), new THREE.MeshBasicMaterial({ map: txtTex("MERRY CHRISTMAS", 90, '#FFD700'), transparent: true, blending: THREE.AdditiveBlending }));
             titleMesh.position.set(0, 50, 0); scene.add(titleMesh);
@@ -444,10 +423,10 @@
             starMesh = new THREE.Mesh(new THREE.PlaneGeometry(12, 12), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(starCvs), transparent: true, blending: THREE.AdditiveBlending }));
             starMesh.position.set(0, CONFIG.treeHeight / 2 + 2, 0); scene.add(starMesh);
 
-            loveMesh = new THREE.Mesh(new THREE.PlaneGeometry(70, 18), new THREE.MeshBasicMaterial({ map: txtTex("I Love K58B-TM ❤️", 100, '#FF69B4', true), transparent: true, blending: THREE.AdditiveBlending }));
+            loveMesh = new THREE.Mesh(new THREE.PlaneGeometry(70, 18), new THREE.MeshBasicMaterial({ map: txtTex("I Love Youuuuuuu ❤️", 100, '#FF69B4'), transparent: true, blending: THREE.AdditiveBlending }));
             loveMesh.position.set(0, -20, 20); loveMesh.visible = false; scene.add(loveMesh);
 
-            cntt7Mesh = new THREE.Mesh(new THREE.PlaneGeometry(50, 12), new THREE.MeshBasicMaterial({ map: txtTex("Mẹ Thêuuu Bùiii", 100, '#00FFFF'), transparent: true, blending: THREE.AdditiveBlending }));
+            cntt7Mesh = new THREE.Mesh(new THREE.PlaneGeometry(50, 12), new THREE.MeshBasicMaterial({ map: txtTex("Tran Thi Ngoc Huyen", 100, '#00FFFF'), transparent: true, blending: THREE.AdditiveBlending }));
             cntt7Mesh.position.set(0, -30, 0); cntt7Mesh.visible = false; scene.add(cntt7Mesh);
         }
 
