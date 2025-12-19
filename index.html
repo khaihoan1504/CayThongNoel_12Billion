@@ -404,11 +404,31 @@
         }
 
         function createDecorations() {
-            function txtTex(t, s, c) {
-                const cvs = document.createElement('canvas'); cvs.width = 1024; cvs.height = 256;
-                const ctx = cvs.getContext('2d'); ctx.font = `bold italic ${s}px "Times New Roman"`; ctx.fillStyle = c;
-                ctx.textAlign = 'center'; ctx.shadowColor = "#FFF"; ctx.shadowBlur = 20; ctx.fillText(t, 512, 150);
-                return new THREE.CanvasTexture(cvs);
+            function txtTex(t, s, c, sharp = false) {
+                const cvs = document.createElement('canvas'); 
+                cvs.width = sharp ? 2048 : 1024; 
+                cvs.height = sharp ? 512 : 256;
+                const ctx = cvs.getContext('2d'); 
+                ctx.font = `bold italic ${s}px "Times New Roman"`; 
+                ctx.fillStyle = c;
+                ctx.textAlign = 'center'; 
+                if (sharp) {
+                    ctx.shadowColor = "#FFF"; 
+                    ctx.shadowBlur = 8; 
+                    ctx.shadowOffsetX = 2;
+                    ctx.shadowOffsetY = 2;
+                } else {
+                    ctx.shadowColor = "#FFF"; 
+                    ctx.shadowBlur = 20;
+                }
+                ctx.fillText(t, cvs.width / 2, cvs.height * 0.6);
+                const texture = new THREE.CanvasTexture(cvs);
+                if (sharp) {
+                    texture.minFilter = THREE.LinearFilter;
+                    texture.magFilter = THREE.LinearFilter;
+                    texture.generateMipmaps = false;
+                }
+                return texture;
             }
             titleMesh = new THREE.Mesh(new THREE.PlaneGeometry(60, 15), new THREE.MeshBasicMaterial({ map: txtTex("MERRY CHRISTMAS", 90, '#FFD700'), transparent: true, blending: THREE.AdditiveBlending }));
             titleMesh.position.set(0, 50, 0); scene.add(titleMesh);
@@ -424,7 +444,7 @@
             starMesh = new THREE.Mesh(new THREE.PlaneGeometry(12, 12), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(starCvs), transparent: true, blending: THREE.AdditiveBlending }));
             starMesh.position.set(0, CONFIG.treeHeight / 2 + 2, 0); scene.add(starMesh);
 
-            loveMesh = new THREE.Mesh(new THREE.PlaneGeometry(70, 18), new THREE.MeshBasicMaterial({ map: txtTex("I Love K58B-TM ❤️", 100, '#FF69B4'), transparent: true, blending: THREE.AdditiveBlending }));
+            loveMesh = new THREE.Mesh(new THREE.PlaneGeometry(70, 18), new THREE.MeshBasicMaterial({ map: txtTex("I Love K58B-TM ❤️", 100, '#FF69B4', true), transparent: true, blending: THREE.AdditiveBlending }));
             loveMesh.position.set(0, -20, 20); loveMesh.visible = false; scene.add(loveMesh);
 
             cntt7Mesh = new THREE.Mesh(new THREE.PlaneGeometry(50, 12), new THREE.MeshBasicMaterial({ map: txtTex("Mẹ Thêuuu Bùiii", 100, '#00FFFF'), transparent: true, blending: THREE.AdditiveBlending }));
