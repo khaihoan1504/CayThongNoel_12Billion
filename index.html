@@ -239,92 +239,83 @@
             const t = Math.random();
             switch (char) {
                 case 0: // K
-                    if (t < 0.4) { // Đường thẳng đứng bên trái
-                        x = -70;
-                        y = -10 + (t / 0.4) * 20;
-                    } else if (t < 0.7) { // Nhánh chéo trên
-                        x = -70 + ((t - 0.4) / 0.3) * 10;
-                        y = 0 + ((t - 0.4) / 0.3) * 10;
-                    } else { // Nhánh chéo dưới
-                        x = -70 + ((t - 0.7) / 0.3) * 10;
-                        y = 0 - ((t - 0.7) / 0.3) * 10;
+                    if (t < 0.4) {
+                        x = -70; y = -10 + (t / 0.4) * 20;
+                    } else if (t < 0.7) {
+                        x = -70 + ((t - 0.4) / 0.3) * 10; y = 0 + ((t - 0.4) / 0.3) * 10;
+                    } else {
+                        x = -70 + ((t - 0.7) / 0.3) * 10; y = 0 - ((t - 0.7) / 0.3) * 10;
                     }
                     break;
 
                 case 1: // 5
-                    if (t < 0.2) { // Nét ngang trên cùng
-                        x = -55 + (t / 0.2) * 10;
-                        y = 10;
-                    } else if (t < 0.4) { // Nét đứng trên
-                        x = -55;
-                        y = 10 - ((t - 0.2) / 0.2) * 10;
-                    } else if (t < 0.6) { // Nét ngang giữa
-                        x = -55 + ((t - 0.4) / 0.2) * 10;
-                        y = 0;
-                    } else if (t < 0.8) { // Nét đứng dưới (bên phải)
-                        x = -45;
-                        y = 0 - ((t - 0.6) / 0.2) * 10;
-                    } else { // Nét ngang dưới cùng
-                        x = -45 - ((t - 0.8) / 0.2) * 10;
-                        y = -10;
+                    if (t < 0.2) {
+                        x = -55 + (t / 0.2) * 10; y = 10;
+                    } else if (t < 0.4) {
+                        x = -55; y = 10 - ((t - 0.2) / 0.2) * 10;
+                    } else if (t < 0.6) {
+                        x = -55 + ((t - 0.4) / 0.2) * 10; y = 0;
+                    } else if (t < 0.8) {
+                        x = -45; y = 0 - ((t - 0.6) / 0.2) * 10;
+                    } else {
+                        x = -45 - ((t - 0.8) / 0.2) * 10; y = -10;
                     }
                     break;
 
-                case 2: // 8
-                    if (t < 0.5) { // Vòng tròn trên
-                        const angle = (t / 0.5) * Math.PI * 2;
+                case 2: // 8 (Căn chỉnh để 2 vòng tròn chạm nhau tại y = 0)
+                    if (t < 0.5) {
+                        // Vòng tròn trên
+                        const angle = (t / 0.5) * Math.PI * 2 - Math.PI / 2;
                         x = -32 + 5 * Math.cos(angle);
                         y = 5 + 5 * Math.sin(angle);
-                    } else { // Vòng tròn dưới
-                        const angle = ((t - 0.5) / 0.5) * Math.PI * 2;
+                    } else {
+                        // Vòng tròn dưới
+                        const angle = ((t - 0.5) / 0.5) * Math.PI * 2 - Math.PI / 2;
                         x = -32 + 5 * Math.cos(angle);
                         y = -5 + 5 * Math.sin(angle);
                     }
                     break;
 
-                case 3: // B
-                    if (t < 0.3) { // Cột đứng bên trái
+                case 3: // B (Sửa lỗi nhảy tọa độ nét cong)
+                    if (t < 0.3) {
+                        // Nét thẳng đứng (x = -18)
                         x = -18;
-                        y = -10 + (t / 0.3) * 20;
-                    } else if (t < 0.65) { // Bụng trên
+                        y = 10 - (t / 0.3) * 20; // Chạy từ trên xuống dưới
+                    } else if (t < 0.65) {
+                        // Bụng trên (đi từ y=10 về y=0)
                         const angle = -Math.PI / 2 + ((t - 0.3) / 0.35) * Math.PI;
-                        x = -18 + 6 * Math.cos(angle);
+                        x = -18 + 7 * Math.cos(angle);
                         y = 5 + 5 * Math.sin(angle);
-                    } else { // Bụng dưới
+                    } else {
+                        // Bụng dưới (đi từ y=0 về y=-10)
                         const angle = -Math.PI / 2 + ((t - 0.65) / 0.35) * Math.PI;
-                        x = -18 + 6 * Math.cos(angle);
+                        x = -18 + 7 * Math.cos(angle);
                         y = -5 + 5 * Math.sin(angle);
                     }
                     break;
 
-                case 4: // Dấu gạch ngang "-"
-                    x = -5 + t * 10;
+                case 4: // -
+                    x = -5 + t * 8;
                     y = 0;
                     break;
 
                 case 5: // T
-                    if (t < 0.4) { // Thanh ngang trên đầu
-                        x = 10 + (t / 0.4) * 20;
-                        y = 10;
-                    } else { // Cột đứng giữa
-                        x = 20;
-                        y = 10 - ((t - 0.4) / 0.6) * 20;
+                    if (t < 0.4) {
+                        x = 10 + (t / 0.4) * 16; y = 10;
+                    } else {
+                        x = 18; y = 10 - ((t - 0.4) / 0.6) * 20;
                     }
                     break;
 
                 case 6: // M
-                    if (t < 0.25) { // Cột đứng trái
-                        x = 35;
-                        y = -10 + (t / 0.25) * 20;
-                    } else if (t < 0.5) { // Nét xiên xuống
-                        x = 35 + ((t - 0.25) / 0.25) * 7.5;
-                        y = 10 - ((t - 0.25) / 0.25) * 10;
-                    } else if (t < 0.75) { // Nét xiên lên
-                        x = 42.5 + ((t - 0.5) / 0.25) * 7.5;
-                        y = 0 + ((t - 0.5) / 0.25) * 10;
-                    } else { // Cột đứng phải
-                        x = 50;
-                        y = 10 - ((t - 0.75) / 0.25) * 20;
+                    if (t < 0.25) {
+                        x = 30; y = -10 + (t / 0.25) * 20;
+                    } else if (t < 0.5) {
+                        x = 30 + ((t - 0.25) / 0.25) * 7; y = 10 - ((t - 0.25) / 0.25) * 10;
+                    } else if (t < 0.75) {
+                        x = 37 + ((t - 0.5) / 0.25) * 7; y = 0 + ((t - 0.5) / 0.25) * 10;
+                    } else {
+                        x = 44; y = 10 - ((t - 0.75) / 0.25) * 20;
                     }
                     break;
             }
