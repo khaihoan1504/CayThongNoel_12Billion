@@ -239,88 +239,92 @@
             const t = Math.random();
             switch (char) {
                 case 0: // K
-                    if (t < 0.33) { 
-                        x = -70; 
-                        y = -10 + (t / 0.33) * 20; 
-                    } else if (t < 0.5) { 
-                        x = -70 + ((t - 0.33) / 0.17) * 8; 
-                        y = 0 + ((t - 0.33) / 0.17) * 10; 
-                    } else { 
-                        x = -70 + ((t - 0.5) / 0.5) * 8; 
-                        y = 0 - ((t - 0.5) / 0.5) * 10; 
+                    if (t < 0.4) { // Đường thẳng đứng bên trái
+                        x = -70;
+                        y = -10 + (t / 0.4) * 20;
+                    } else if (t < 0.7) { // Nhánh chéo trên
+                        x = -70 + ((t - 0.4) / 0.3) * 10;
+                        y = 0 + ((t - 0.4) / 0.3) * 10;
+                    } else { // Nhánh chéo dưới
+                        x = -70 + ((t - 0.7) / 0.3) * 10;
+                        y = 0 - ((t - 0.7) / 0.3) * 10;
                     }
                     break;
+
                 case 1: // 5
-                    if (t < 0.2) { 
-                        x = -55 + (t / 0.2) * 8; 
-                        y = 10; 
-                    } else if (t < 0.4) { 
-                        x = -55; 
-                        y = 10 - ((t - 0.2) / 0.2) * 10; 
-                    } else if (t < 0.6) { 
-                        x = -55 + ((t - 0.4) / 0.2) * 8; 
-                        y = 0; 
-                    } else if (t < 0.8) { 
-                        x = -47; 
-                        y = 0 - ((t - 0.6) / 0.2) * 10; 
-                    } else { 
-                        x = -55 + ((t - 0.8) / 0.2) * 8; 
-                        y = -10; 
+                    if (t < 0.2) { // Nét ngang trên cùng
+                        x = -55 + (t / 0.2) * 10;
+                        y = 10;
+                    } else if (t < 0.4) { // Nét đứng trên
+                        x = -55;
+                        y = 10 - ((t - 0.2) / 0.2) * 10;
+                    } else if (t < 0.6) { // Nét ngang giữa
+                        x = -55 + ((t - 0.4) / 0.2) * 10;
+                        y = 0;
+                    } else if (t < 0.8) { // Nét đứng dưới (bên phải)
+                        x = -45;
+                        y = 0 - ((t - 0.6) / 0.2) * 10;
+                    } else { // Nét ngang dưới cùng
+                        x = -45 - ((t - 0.8) / 0.2) * 10;
+                        y = -10;
                     }
                     break;
+
                 case 2: // 8
-                    const angle8 = t * Math.PI * 2;
-                    if (t < 0.5) {
-                        x = -35 + 4 * Math.cos(angle8); 
-                        y = 5 + 5 * Math.sin(angle8); 
-                    } else {
-                        x = -35 + 4 * Math.cos(angle8); 
-                        y = -5 + 5 * Math.sin(angle8); 
+                    if (t < 0.5) { // Vòng tròn trên
+                        const angle = (t / 0.5) * Math.PI * 2;
+                        x = -32 + 5 * Math.cos(angle);
+                        y = 5 + 5 * Math.sin(angle);
+                    } else { // Vòng tròn dưới
+                        const angle = ((t - 0.5) / 0.5) * Math.PI * 2;
+                        x = -32 + 5 * Math.cos(angle);
+                        y = -5 + 5 * Math.sin(angle);
                     }
                     break;
+
                 case 3: // B
-                    if (t < 0.25) { 
-                        x = -20; 
-                        y = -10 + (t / 0.25) * 20; 
-                    } else if (t < 0.5) { 
-                        const angleB1 = ((t - 0.25) / 0.25) * Math.PI;
-                        x = -20 + 4 * Math.cos(angleB1); 
-                        y = 5 + 5 * Math.sin(angleB1); 
-                    } else if (t < 0.75) { 
-                        const angleB2 = ((t - 0.5) / 0.25) * Math.PI;
-                        x = -20 + 4 * Math.cos(angleB2); 
-                        y = -5 + 5 * Math.sin(angleB2); 
-                    } else { 
-                        x = -20; 
-                        y = 0; 
+                    if (t < 0.3) { // Cột đứng bên trái
+                        x = -18;
+                        y = -10 + (t / 0.3) * 20;
+                    } else if (t < 0.65) { // Bụng trên
+                        const angle = -Math.PI / 2 + ((t - 0.3) / 0.35) * Math.PI;
+                        x = -18 + 6 * Math.cos(angle);
+                        y = 5 + 5 * Math.sin(angle);
+                    } else { // Bụng dưới
+                        const angle = -Math.PI / 2 + ((t - 0.65) / 0.35) * Math.PI;
+                        x = -18 + 6 * Math.cos(angle);
+                        y = -5 + 5 * Math.sin(angle);
                     }
                     break;
-                case 4: // -
-                    x = -5 + t * 8; 
-                    y = 0; 
+
+                case 4: // Dấu gạch ngang "-"
+                    x = -5 + t * 10;
+                    y = 0;
                     break;
+
                 case 5: // T
-                    if (t < 0.3) { 
-                        x = 15 + (t / 0.3) * 10; 
-                        y = 10; 
-                    } else { 
-                        x = 20; 
-                        y = 10 - ((t - 0.3) / 0.7) * 20; 
+                    if (t < 0.4) { // Thanh ngang trên đầu
+                        x = 10 + (t / 0.4) * 20;
+                        y = 10;
+                    } else { // Cột đứng giữa
+                        x = 20;
+                        y = 10 - ((t - 0.4) / 0.6) * 20;
                     }
                     break;
+
                 case 6: // M
-                    if (t < 0.25) { 
-                        x = 35; 
-                        y = -10 + (t / 0.25) * 20; 
-                    } else if (t < 0.5) { 
-                        x = 35 + ((t - 0.25) / 0.25) * 5; 
-                        y = 10 - ((t - 0.25) / 0.25) * 10; 
-                    } else if (t < 0.75) { 
-                        x = 40 + ((t - 0.5) / 0.25) * 5; 
-                        y = 0 + ((t - 0.5) / 0.25) * 10; 
-                    } else { 
-                        x = 45; 
-                        y = -10 + ((t - 0.75) / 0.25) * 20; 
+                    if (t < 0.25) { // Cột đứng trái
+                        x = 35;
+                        y = -10 + (t / 0.25) * 20;
+                    } else if (t < 0.5) { // Nét xiên xuống
+                        x = 35 + ((t - 0.25) / 0.25) * 7.5;
+                        y = 10 - ((t - 0.25) / 0.25) * 10;
+                    } else if (t < 0.75) { // Nét xiên lên
+                        x = 42.5 + ((t - 0.5) / 0.25) * 7.5;
+                        y = 0 + ((t - 0.5) / 0.25) * 10;
+                    } else { // Cột đứng phải
+                        x = 50;
+                        y = 10 - ((t - 0.75) / 0.25) * 20;
                     }
                     break;
             }
